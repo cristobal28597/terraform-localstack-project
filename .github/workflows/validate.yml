@@ -1,4 +1,4 @@
-name: Terraform Validate
+name: Terraform Deploy to LocalStack
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  terraform-validate:
+  terraform-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +21,9 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
-    - name: Validate Terraform configuration
-      run: terraform validate
+    - name: Plan Terraform changes
+      run: terraform plan -out=tfplan -var="endpoint=http://192.168.1.137:4566"
+
+    - name: Apply Terraform changes
+      run: terraform apply -auto-approve tfplan
 
