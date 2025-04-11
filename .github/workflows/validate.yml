@@ -3,6 +3,11 @@ name: Terraform Validate
 on:
   push:
     branches:
+      name: Terraform Validate
+
+on:
+  push:
+    branches:
       - main
 
 jobs:
@@ -20,12 +25,6 @@ jobs:
 
     - name: Initialize Terraform
       run: terraform init
-
-    - name: Plan Terraform changes
-      run: terraform plan -out=tfplan -var="endpoint=http://192.168.1.137:4566"
-
-    - name: Apply Terraform changes
-      run: terraform apply -auto-approve tfplan
 
     - name: Validate Terraform configuration
       run: terraform validate
