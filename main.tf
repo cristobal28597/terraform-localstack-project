@@ -9,8 +9,5 @@ provider "aws" {
   skip_credentials_validation = true
   skip_requesting_account_id  = true
 }
-module "mi_recurso" {
-  source      = "./modules/mi-recurso"
-  bucket_name = "mi-modulo-bucket"
-}
+
 
